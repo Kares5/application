@@ -146,7 +146,7 @@ export const productCountController = async (req, res) => {
 // product List based on page
 export const productListController = async (req , res) => {
     try {
-        const perPage = 6
+        const perPage = 5
         // اذا رقم البيج موجود بالرابط اعرضلي هاد الرقم اذا مو موجود الرقم  اعرضلي الصفحة الاولى
         const page = req.params.page ? req.params.page : 1
         // البيج مارح تكون واحد تحت لانو عطيت الشرط انو تكون واحد 

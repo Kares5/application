@@ -13,13 +13,12 @@ const Header = () => {
   const [auth , setAuth] = useAuth()
 
  const handleLogout = () => {
-   // every changes on auth context we need to write :...auth ,
   setAuth({...auth , existingUser: null , token : ''})
   localStorage.removeItem('auth')
   toast.success('Logout Successfully')
  }
 
- const [cart] = useCart([])
+ const { cart, removeFromCart, changeQuantity } = useCart();
  const [favorite] = useFavorite([])
 
   return (
@@ -64,14 +63,14 @@ const Header = () => {
             )}
           <li>
             <Link to='/favorites' onClick={() => setToggel(false)}>
-            {favorite.length > 0 && <span className={styles.favoriteLength}>{favorite.length}</span> }
+            <span className={styles.favoriteLength}>{favorite.length}</span>
               <img src='/favorite.ico' alt='logo' />
               Favorite
             </Link>
           </li>    
           <li>
             <Link to='/cart' onClick={() => setToggel(false)}>
-             {cart.length > 0 &&  <span className={styles.cartLength}>{cart.length}</span>}
+              <span className={styles.cartLength}>{cart.items.length}</span>
               <img src='/Cart.ico' alt='logo' />
               Cart
             </Link>
