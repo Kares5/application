@@ -1,0 +1,185 @@
+.userName{
+    font-size: 3rem ;
+    color :var( --content_color);
+    margin-left: 5rem;
+}
+.containeruserMenu{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-left: 5rem;  
+}
+.titleDashboard{
+    cursor: pointer;
+   font-size: 2rem;
+   font-weight: bold;
+   color : var(--content_color);
+   letter-spacing: 0.2rem;
+   margin: 2rem;
+}
+.menue{
+    font-size: 2rem;
+    width: 15rem;
+    display: none;
+    background-color: #ffc1151a;
+    border-radius: 18px;
+}
+.menue a {
+    text-decoration: none;
+    margin: 0.5rem 0;
+    color: #ffc115f8;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+.menue a:hover {
+    text-decoration: underline;
+}
+
+
+.titleDashboardName{
+    text-align: center;
+    margin: 8rem;
+    color: var(--content_color);
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+    position: relative;
+}
+.titleDashboardName::after {
+    content: '';
+    position: absolute;
+    bottom:  -30px;
+    left: 520px;
+    width: 24rem;
+    background-color: #ffc115f8;
+    height: 0.4rem;
+    border-radius: 20px;
+}
+
+.wrapper{
+    width: 100%;
+    height: 74vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 0;
+}
+form {
+    width: 25rem;
+    box-shadow: var( --box_shadow);
+    border-radius:10px;
+
+    
+}
+form h4{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px 10px 0 0px;
+    color: white;
+    background-color: #ffc115f8 ;
+    padding: 1rem;
+}
+.field {
+   position: relative;
+}
+.field input {
+    width: 23rem;
+    color: var(--content_color);
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 1rem ;
+    background-color: var(--body_background);
+    box-shadow :  var( --box_shadow)
+}
+.field label {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    color:#ffc115f8 ;
+    transition: all 0.3s;
+    pointer-events: none;
+    background-color:var(--body_background);
+    font-weight: bold;
+}
+.field input:focus ~ label ,
+.field input:valid ~ label{
+    top: 5%;
+}
+form button {
+    background-color: #ffc115f8;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    border-radius: 50px;
+    padding: 0.7rem 1rem;
+    border: none;
+    display: block;
+    width: 80%;
+    margin: 0 auto 0.4rem auto;
+    cursor: pointer;
+}
+
+.category{
+    outline: none;
+    border: none;
+    background-color: #ffc115f8  ;
+    border-radius: 10px;
+    box-shadow: var( --box_shadow);
+    cursor: pointer;
+    display: inline-block;
+    margin: 1.5rem;
+    padding: 2.5rem;
+    font-size: 3rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    
+}
+.category:focus{
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9) inset ;
+}
+
+.titleProductCat {
+    text-align: center;
+    font-size: 3rem;
+}
+.productsCategoryContainer{
+    margin-left: 3rem;
+}
+.singelCategoryContainer{
+    margin: 1rem;
+}
+.imgCategory{
+    width: 20rem;
+    height: 20rem;
+}
+.imgCategory img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+.bodyproductCat{
+    margin-left: 2rem;   
+}
+.bodyproductCat h3{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+.bodyproductCat button{
+
+    padding: 0.7rem ;
+    background-color: #ffc115f8;
+    color: white;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: var( --box_shadow);
+}

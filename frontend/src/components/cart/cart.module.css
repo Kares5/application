@@ -1,0 +1,119 @@
+.cotainerCart{
+    display: flex;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+}
+.cartLength{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: var( --content_color);
+}
+.Singleproduct {
+    width: 10rem;
+    height: 10rem;
+    margin: 1rem 5rem 17rem 3rem  ;
+    box-shadow: var( --box_shadow);
+    border-radius: 20px 20px 0 0 ;
+}
+.imageProduct{
+    width: 17rem;
+    height: 13rem;
+    position: relative;
+}
+.imageProduct img{
+    border-radius: 20px 20px 0 0 ;
+    width: 100%;
+    height: 100%;
+}
+.cartIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+}
+.cartIcon i{   
+    font-size: 2.7rem; 
+    cursor: pointer; 
+}
+.heartIcon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+}
+.heartIcon i{   
+    font-size: 2.7rem; 
+    cursor: pointer;
+    color: rgb(228, 72, 72); 
+}
+
+
+.productBody{
+    box-shadow: var( --box_shadow);
+    border-radius: 0px 0px 20px 20px ;
+    padding: 1rem;
+    width: 17rem;
+    color: var( --content_color);
+}
+.productBody h2{
+    font-weight: bold;
+    font-size: 2rem;
+}
+.productBody div {
+    font-size:1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.productBody button {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 0.6rem;
+    background-color: #ffc115f8  ;
+    border-radius: 10px;
+    box-shadow: var( --box_shadow);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.productBody button:active{
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9) inset ;
+}
+.cartSummary{
+    box-shadow: var( --box_shadow);
+    font-size: 2.5rem;
+    width: 13rem;
+    margin-left: 3rem;
+    padding: 0.5rem;
+    border-radius: 20px;
+    color: var( --content_color);
+}
+.order{
+    padding: 1rem 3rem;
+    background-color: #ffc115f8;
+    color: white;
+    border-radius: 6px;
+    font-size: 1.8rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: var( --box_shadow);
+    width: 16rem;
+    margin: 1rem auto;
+    text-align: center;
+}
+.home{
+    padding: 1rem 3rem;
+    background-color: #ffc115f8;
+    color: white;
+    border-radius: 6px;
+    font-size: 1.8rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: var( --box_shadow);
+    width: 16rem;
+    margin: 1rem auto;
+    text-align: center;
+}

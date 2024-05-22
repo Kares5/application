@@ -1,0 +1,382 @@
+.containerAdminMenu{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 5rem;  
+}
+
+.titleDashboardName{
+    text-align: center;
+    margin: 8rem;
+    color: var(--content_color);
+    font-size: 2rem;
+    position: relative;
+}
+.titleDashboardName::after {
+    content: '';
+    position: absolute;
+    bottom:  -30px;
+    left: 500px;
+    width: 24rem;
+    background-color: #ffc115f8;
+    height: 0.4rem;
+    border-radius: 20px;
+} 
+.adminName{
+    font-size: 3rem ;
+    color : var(--content_color);
+    margin: 5rem;
+}
+
+.titleDashboard{
+     cursor: pointer;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color : var(--content_color);
+    letter-spacing: 0.3rem;
+}
+.menue{
+    font-size: 2rem;
+    width: 15rem;
+    display: none;
+    background-color: #ffc1151a;
+    border-radius: 18px;
+    
+}
+.menue a {
+    text-decoration: none;
+    margin: 0.4rem 0;
+    color: #ffc115f8;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+
+
+
+.menue a:hover {
+    text-decoration: underline;
+}
+
+.cotainerTaple{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+table {
+    margin: 1rem auto;
+    border: 1px solid #ffc115f8 ;
+    border-collapse: collapse;
+    box-shadow: var( --box_shadow);
+    color: var( --content_color);
+}
+thead {
+    background-color:#ffc115f8 ;
+    color: white;
+}
+table tr {
+    transition: 0.3s;
+}
+
+table tr:hover {
+    background-color: #ffc115f8;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #ffc1153b;
+} 
+
+table td , th {
+    border: 1px solid #ffc115f8 ;
+    font-size: 1rem;
+    padding: 0.5rem;
+    box-shadow: var( --box_shadow);
+    text-align: center;
+}
+
+.search{
+    padding: 1rem;
+    border-radius: 40px;
+    outline: none;
+    border: none;
+    box-shadow: var( --box_shadow)
+}
+.noteResponsive{
+    display: none;
+}
+td i {
+    color: red;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+.countUser{
+    font-size: 2rem;
+    color: var( --content_color);
+    margin-top: 1rem;
+    
+}
+.wrapper{
+    width: 100%;
+    height: 74vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 0;
+}
+form {
+    width: 25rem;
+    box-shadow: var( --box_shadow);
+    border-radius:10px;
+
+    
+}
+form h4{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px 10px 0 0px;
+    color: white;
+    background-color: #ffc115f8 ;
+    padding: 1rem;
+}
+.field {
+   position: relative;
+}
+.field input ,
+.field textarea{
+    width: 23rem;
+    color: var(--content_color);
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 1rem ;
+    background-color: var(--body_background);
+    box-shadow :  var( --box_shadow)
+}
+.field label {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    color:#ffc115f8 ;
+    transition: all 0.3s;
+    pointer-events: none;
+    background-color:var(--body_background);
+    font-weight: bold;
+}
+.field input:focus ~ label ,
+.field input:valid ~ label{
+    top: 5%;
+}
+form button {
+    background-color: #ffc115f8;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    border-radius: 50px;
+    padding: 0.7rem 1rem;
+    border: none;
+    display: block;
+    width: 80%;
+    margin: 0 auto 0.4rem auto;
+    cursor: pointer;
+}
+.singleCategoryContaner {
+    border-radius: 10px;
+}
+.category{
+    outline: none;
+    border: none;
+    background-color: #ffc115f8  ;
+    border-radius: 10px;
+    box-shadow: var( --box_shadow);
+    cursor: pointer;
+    margin-right: 1rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.categoryContainer{
+    margin-top: 1rem;
+    display: flex;
+}
+.nameCategoryContainer{
+    margin-bottom: 5rem;
+}
+.CreateCategoryForm {
+    position: relative;
+    margin: 2rem auto;
+    width: 22rem;
+    height: 10rem;
+}
+.labelCategoryName{
+    position: absolute;
+    top: 24%;
+    left: 10%;
+    color:#ffc115f8 ;
+    transition: all 0.3s;
+    pointer-events: none;
+    background-color:var(--body_background);
+    font-weight: bold;
+}
+.CreateCategoryForm input{
+    width: 20rem;
+    color: var(--content_color);
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 1rem ;
+    background-color: var(--body_background);
+    box-shadow :  var( --box_shadow)
+    
+}
+/* لحتى تعملي الفالد لازم الانبوت يكون ريكيورد */
+.CreateCategoryForm input:focus ~ .labelCategoryName , 
+.CreateCategoryForm input:valid ~ .labelCategoryName 
+{
+    top: 5%;
+}
+.singleCategoryContaner {
+   margin: 3rem;
+}
+
+
+.uodateCategoryForm {
+    width: 12rem;
+    margin: 1rem;
+}
+.uodateCategoryForm input{
+    width: 10rem;
+    color: var(--content_color);
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    padding: 0.5rem;
+    margin: 1rem ;
+    text-align: center;
+    background-color: var(--body_background);
+    box-shadow :  var( --box_shadow)
+}
+.uodateCategoryForm button {
+    font-size: 0.8rem;
+    width: 7rem;
+}
+.UpdateCategortIcon {
+    display: inline-block;
+    padding: 0.6rem;
+    box-shadow : var( --box_shadow);
+    margin-right: 0.7rem;
+    border-radius: 10px;
+}
+.UpdateCategortIcon i {
+    font-size: 1.7rem;
+}
+.DeleteCategoryIcon {
+    display: inline-block;
+    padding: 0.6rem;
+    box-shadow : var( --box_shadow);
+    border-radius: 10px;
+     
+}
+.DeleteCategoryIcon i {
+    font-size: 1.7rem; 
+}
+
+.modelContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+.modelContent{
+    background-color: var(--body_background);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 5px;
+    position: relative;
+}
+.modelContent i {
+    position: absolute;
+    color: red;
+    top: -0.7rem;
+    right: -0.6rem; 
+}
+.CategoriesLength {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.productFormBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fieldProduct input , .fieldProduct textarea ,  .fieldProduct select{
+    width: 18rem;
+    color: var(--content_color);
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    padding: 1rem;
+    margin:1rem 1.2rem ;
+    background-color: var(--body_background);
+    box-shadow :  var( --box_shadow) ;
+}
+.fieldProduct button{
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 1rem;
+    background-color: #ffc115f8  ;
+    border-radius: 10px;
+    box-shadow: var( --box_shadow);
+    border: none;
+    cursor: pointer;
+    margin:1rem 1.2rem ;
+    width: 18rem;
+}
+.imgProduct{
+    width: 5rem;
+    height: 5rem;
+}
+.imgProduct img {
+    width: 100%;
+    height: 100%;
+}
+.ProductLength {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 2rem 0;
+}
+.countUser{
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 2rem 0;
+}
