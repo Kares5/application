@@ -5,18 +5,12 @@ import { useCart } from "../../context/cart";
 import { useNavigate } from "react-router-dom";
 import styles from "./cart.module.css";
 import axios from "axios";
-import DropIn from "braintree-web-drop-in-react";
 import { toast } from "react-toastify";
 
 const Cart = () => {
   const naviate = useNavigate();
-  const [auth] = useAuth();
-  const { cart, removeFromCart, changeQuantity, addToCart, clearCart } =
+  const { cart, removeFromCart,  clearCart } =
     useCart();
-
-  const [clientToken, setClientToken] = useState("");
-  const [instance, setInstance] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const removeCartItem = (pid) => {
     try {
@@ -42,53 +36,26 @@ const Cart = () => {
     }
   };
 
-  // ======== get payment gateway token
-  const getToken = async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:5000/api/product/braintree/token`
-      );
-      setClientToken(data?.clientToken);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getToken();
-  }, [auth?.token]);
 
-  // handle payment
-  const handlePayment = async () => {
+  // handleCreate
+  const handleCreate = async () => {
     try {
-      const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post(
-        "http://localhost:5000/api/product/braintree/payment",
-        {
-          nonce,
-          cart,
-        }
-      );
-      setLoading(false);
+      const {data} = await axios.post('http://localhost:5000/api/product/create-order' , { cart})
       localStorage.removeItem("cart");
       //setCart([])
       clearCart();
+      toast.success("Create Order Completed Successfully")
       naviate("/");
-      toast.success("Payment Completed Successfully");
     } catch (error) {
-      //console.log(error);
-      setLoading(false);
+      console.log(error)
     }
   };
   console.log((cart.items));
   return (
     <Layout>
-      <h4 className={styles.cartLength}>
-        {cart.items.length
-          ? `You have ${cart.items.length} items in your cart ${
-              auth.token ? "" : "Please login to checkout"
-            } `
-          : "Your cart is empty"}
-      </h4>
+    <h4 className={styles.cartLength}>
+        {cart.length > 0 && `You have ${cart.length} items in your cart `}
+    </h4>
       <div className={styles.cotainerCart}>
         {cart.items.map((p) => (
           <div className={styles.Singleproduct}>
@@ -111,7 +78,7 @@ const Cart = () => {
             </div>
             <div className={styles.productBody}>
               <h2>Name : {p.food.name}</h2>
-              <p>Description : {p.food.description}</p>
+              <p>Description : {p.food.description.substring(0 , 30)}</p>
               <div>Price : ${p.price} </div>
 
               <button onClick={() => naviate(`/product/${p.food.slug}`)}>
@@ -124,42 +91,7 @@ const Cart = () => {
 
       <div className={styles.cartSummary}>
         <h2 className={styles.totalPrice}>Total : {totalPrice()}</h2>
-        {auth?.user?.address ? (
-          <div>
-            <h4>Current Address : {auth.user.address}</h4>
-            <button onClick={() => naviate("/dashboard/user/profile")}>
-              Update Address
-            </button>
-          </div>
-        ) : (
-          <div>
-            {auth.token ? (
-              <button onClick={() => naviate("/dashboard/user/profile")}>
-                Update Address
-              </button>
-            ) : (
-              <button onClick={() => naviate("/login", { state: "/cart " })}>
-                Please Login to checkout
-              </button>
-            )}
-          </div>
-        )}
-        {!clientToken | !cart.length ? (
-          ""
-        ) : (
-          <div>
-            <DropIn
-              options={{
-                authorization: clientToken,
-                paypal: { flow: "vault" },
-              }}
-              onInstance={(instance) => setInstance(instance)}
-            />
-            <button onClick={handlePayment}>
-              {loading ? "Processing ...." : "Make Payment "}
-            </button>
-          </div>
-        )}
+          <div className={styles.order} onClick={handleCreate}>Make Order</div> 
       </div>
     </Layout>
   );

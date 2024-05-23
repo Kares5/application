@@ -193,7 +193,7 @@ export const productCategoryController = async (req, res) => {
     }
 }
 
-// create product 
+// create order 
 export const createOrderController = async(req , res) => {
     try {        
         const {cart} = req.body
