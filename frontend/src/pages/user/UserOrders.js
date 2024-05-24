@@ -14,7 +14,7 @@ const UserOrders = () => {
 
     const getOrders = async() => {
         try {
-            const {data} = await axios.get('http://localhost:5000/api/auth/orders')
+            const {data} = await axios.get('https://mern1-rpok.onrender.com/api/auth/orders')
             setOrders(data)
         } catch (error) {
             console.log(error);

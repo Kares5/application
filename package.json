@@ -6,8 +6,10 @@
   "type": "module",
   "scripts": {
     "server": "nodemon server.js",
-    "frontend": "npm start --prefix ./frontend",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+    "frontend": "npm run start --prefix ./frontend",
+    "build": "concurrently \"npm run pkg \" \"npm run build --prefix ./frontend\" ",
+    "pkg": "npm install & cd frontend && npm install",
+    "dev": "concurrently \"npm run pkg \"  \"npm start --prefix ./frontend\"  \"npm run server\" "
   },
   "author": "Kares",
   "license": "ISC",

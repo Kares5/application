@@ -22,7 +22,7 @@ const UpdateProduct = () => {
     const getSingleProduct = async () => {
 
         try {
-            const {data} = await axios.get(`http://localhost:5000/api/product/get-product/${params.slug}`)
+            const {data} = await axios.get(`https://mern1-rpok.onrender.com/api/product/get-product/${params.slug}`)
 
             setName(data.product.name)
             setId(data.product._id)
@@ -40,7 +40,7 @@ const UpdateProduct = () => {
 
     const getCategories = async () => {
         try {
-            const {data} = await axios.get('http://localhost:5000/api/category/get-category')
+            const {data} = await axios.get('https://mern1-rpok.onrender.com/api/category/get-category')
             setCategories(data.category)
         } catch (error) {
             console.log(error)
@@ -62,7 +62,7 @@ const UpdateProduct = () => {
             productData.append('category' , category)
 
             // لاحظي هون ماف اويت لما بنشء برودكت الاويت بس لما بعرض البرودكتس
-            const {data} = axios.put(`http://localhost:5000/api/product/update-product/${id}` , productData)
+            const {data} = axios.put(`https://mern1-rpok.onrender.com/api/product/update-product/${id}` , productData)
             if(data?.success) {
                 toast.error(data?.message)
               }else{
@@ -79,7 +79,7 @@ const UpdateProduct = () => {
         try {
             let answer = window.prompt('Are You sure You want to delete')
             if(!answer) return
-            const {data} = await axios.delete(`http://localhost:5000/api/product/delete-product/${id}`)
+            const {data} = await axios.delete(`https://mern1-rpok.onrender.com/api/product/delete-product/${id}`)
             toast.success("Product Deleted Successfully") 
             navigate('/dashboard/admin/products')            
         } catch (error) {
@@ -100,7 +100,7 @@ const UpdateProduct = () => {
     {photo ? (
       <img src={URL.createObjectURL(photo)} alt='product' height={'200px'}  />
       ) : (
-        <img alt='product' height={'200px'} src={`http://localhost:5000/api/product/product-photo/${id}`}/>
+        <img alt='product' height={'200px'} src={`https://mern1-rpok.onrender.com/api/product/product-photo/${id}`}/>
       )}
       
      <div className={styles.productFormBody}>

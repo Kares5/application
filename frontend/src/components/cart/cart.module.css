@@ -101,7 +101,7 @@
     cursor: pointer;
     box-shadow: var( --box_shadow);
     width: 16rem;
-    margin: 1rem auto;
+    margin: 3rem auto;
     text-align: center;
 }
 .home{
@@ -116,4 +116,14 @@
     width: 16rem;
     margin: 1rem auto;
     text-align: center;
+}
+.Quantity{
+    padding: 0.3rem;
+    margin-left: 5rem;
+    border: none;
+    box-shadow: var( --box_shadow);
+    border-radius: 10px;
+    outline: none;
+    color: black;
+    background-color: bisque;
 }

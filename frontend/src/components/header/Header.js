@@ -18,7 +18,7 @@ const Header = () => {
   toast.success('Logout Successfully')
  }
 
- const { cart, removeFromCart, changeQuantity } = useCart();
+ const [ cart, removeFromCart, changeQuantity, addToCart , clearCart ] = useCart();
  const [favorite] = useFavorite([])
 
   return (
@@ -55,7 +55,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to={`/dashboard/${auth.existingUser.role === 1 ? 'admin' : 'user'}`}onClick={() => setToggel(false)}>
+                  <Link to={`/dashboard/${auth.existingUser.role === 1 ? 'admin' : 'user'}`} onClick={() => setToggel(false)}>
                     <img src='/dashboard.ico' alt='logo' /> Dashboard
                   </Link>
                 </li>
@@ -63,14 +63,15 @@ const Header = () => {
             )}
           <li>
             <Link to='/favorites' onClick={() => setToggel(false)}>
-            <span className={styles.favoriteLength}>{favorite.length}</span>
+            {favorite.length > 0  &&  <span className={styles.favoriteLength}>{ favorite.length }</span> }            
               <img src='/favorite.ico' alt='logo' />
               Favorite
             </Link>
           </li>    
           <li>
             <Link to='/cart' onClick={() => setToggel(false)}>
-              <span className={styles.cartLength}>{cart.items.length}</span>
+            { cart.length > 0 &&  <span className={styles.cartLength}>{cart.length}</span>}
+             
               <img src='/Cart.ico' alt='logo' />
               Cart
             </Link>

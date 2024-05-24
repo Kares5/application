@@ -29,7 +29,7 @@ connectDB()
 const app = express()
 
 // middleware
-app.use(cors())
+app.use(cors({credentials: true, origin: true}))
 app.use(express.json())
 
 // routes

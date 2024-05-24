@@ -17,7 +17,7 @@ const Login = () => {
     const handleSubit = async(e) => {
         e.preventDefault()
         try {
-          const res = await axios.post('http://localhost:5000/api/auth/login' , { email , password })
+          const res = await axios.post('https://mern1-rpok.onrender.com/api/auth/login' , { email , password })
           if (res && res.data.success) {
             toast.success(res.data && res.data.message)
             // every changes on auth context we need to write :...auth ,

@@ -19,7 +19,7 @@ const Categories = () => {
 
   const getCategories = async () => {
     try {
-        const {data} = await axios.get('http://localhost:5000/api/category/get-category')
+        const {data} = await axios.get('https://mern1-rpok.onrender.com/api/category/get-category')
         setCategories(data.category)
     } catch (error) {
         console.log(error)
@@ -31,7 +31,7 @@ useEffect( () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const {data} = await axios.post('http://localhost:5000/api/category/create-category' ,{name})
+      const {data} = await axios.post('https://mern1-rpok.onrender.com/api/category/create-category' ,{name})
      if(data.success) {
       toast.success(`${name} is Created successfully`)
       getCategories()
@@ -47,7 +47,7 @@ useEffect( () => {
   const handleUpdate = async (e) => {
     e.preventDefault()
     try {
-      const { data} = await axios.put(`http://localhost:5000/api/category/update-category/${selected._id}` , {name : updatedName})
+      const { data} = await axios.put(`https://mern1-rpok.onrender.com/api/category/update-category/${selected._id}` , {name : updatedName})
       if(data.success) {
         toast.success(`${updatedName} successfully updated`)
         setUpdatedName('')
@@ -65,7 +65,7 @@ useEffect( () => {
   }
   const deleteHandler = async (id) => {
     try {
-      const {data} = await axios.delete(`http://localhost:5000/api/category/delete-category/${id}`)
+      const {data} = await axios.delete(`https://mern1-rpok.onrender.com/api/category/delete-category/${id}`)
      if (data.success){
       toast.success('Category deleted successfully')
       window.location.reload()      

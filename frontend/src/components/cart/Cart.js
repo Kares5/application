@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+
 import Layout from "./../Layout";
-import { useAuth } from "../../context/auth";
 import { useCart } from "../../context/cart";
 import { useNavigate } from "react-router-dom";
 import styles from "./cart.module.css";
@@ -9,27 +8,17 @@ import { toast } from "react-toastify";
 
 const Cart = () => {
   const naviate = useNavigate();
-  const { cart, removeFromCart,  clearCart } =
+  const [ cart, removeFromCart, changeQuantity ,clearCart  ] =
     useCart();
-
-  const removeCartItem = (pid) => {
-    try {
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === pid);
-      myCart.splice(index, 1);
-      ///setCart(myCart);
-      localStorage.setItem("cart", JSON.stringify(myCart));
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const totalPrice = () => {
     try {
       let total = 0;
-      cart.items.map((item) => {
-        total = total + item.price;
-      });
+      if(cart) {
+        cart.map((item) => {
+          total = total + item.totalPrice ? item.totalPrice : item.price
+         })
+      }   
       return total;
     } catch (error) {
       console.log(error);
@@ -40,7 +29,7 @@ const Cart = () => {
   // handleCreate
   const handleCreate = async () => {
     try {
-      const {data} = await axios.post('http://localhost:5000/api/product/create-order' , { cart})
+      const {data} = await axios.post('https://mern1-rpok.onrender.com/api/product/create-order' , {cart})
       localStorage.removeItem("cart");
       //setCart([])
       clearCart();
@@ -50,19 +39,18 @@ const Cart = () => {
       console.log(error)
     }
   };
-  console.log((cart.items));
   return (
     <Layout>
     <h4 className={styles.cartLength}>
-        {cart.length > 0 && `You have ${cart.length} items in your cart `}
+        {(cart.length ) > 0 && `You have ${cart.length} items in your cart `}
     </h4>
       <div className={styles.cotainerCart}>
-        {cart.items.map((p) => (
-          <div className={styles.Singleproduct}>
+         {cart?cart.map((p) => (
+          <div className={styles.Singleproduct} key={p._id}>
             <div className={styles.imageProduct}>
               <img
-                src={`http://localhost:5000/api/product/product-photo/${p.food.id}`}
-                alt={p.food.name}
+                src={`https://mern1-rpok.onrender.com/api/product/product-photo/${p.id}`}
+                alt={p.name}
               />
 
               <div className={styles.heartIcon}>
@@ -71,28 +59,44 @@ const Cart = () => {
 
               <div className={styles.cartIcon}>
                 <i
-                  onClick={() => removeFromCart(p.food._id)}
+                  onClick={() => removeFromCart(p._id)}
                   className="bi bi-trash"
                 ></i>
               </div>
             </div>
             <div className={styles.productBody}>
-              <h2>Name : {p.food.name}</h2>
-              <p>Description : {p.food.description.substring(0 , 30)}</p>
-              <div>Price : ${p.price} </div>
-
-              <button onClick={() => naviate(`/product/${p.food.slug}`)}>
+              <h2>Name : {p.name}</h2>
+              <p>Description : {p.description.substring(0 , 30)}</p>
+              <div>Price : ${p.totalPrice ? p.totalPrice : p.price }
+                <select
+                  className={styles.Quantity}
+                  value={p.quantity}
+                  onChange={e => changeQuantity(p, Number(e.target.value))}>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+             
+              <button onClick={() => naviate(`/product/${p.slug}`)}>
                 See More
               </button>
             </div>
           </div>
-        ))}
+        )) : []}
       </div>
 
       <div className={styles.cartSummary}>
         <h2 className={styles.totalPrice}>Total : {totalPrice()}</h2>
+        </div>
+        {(cart.length) 
+           ? 
           <div className={styles.order} onClick={handleCreate}>Make Order</div> 
-      </div>
+           :
+          <div className={styles.order} onClick={() => naviate('/')}>Go To Home</div> }
+       
     </Layout>
   );
 };

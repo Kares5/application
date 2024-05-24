@@ -6,16 +6,16 @@ const Footer = () => {
     <div className={styles.footer}  >
       <h3>Contact Us :</h3>
       <Link>
-      <i class="bi bi-twitter"></i>
+      <i className="bi bi-twitter"></i>
       </Link>
       <Link>
-      <i class="bi bi-facebook"></i>
+      <i className="bi bi-facebook"></i>
       </Link>
       <Link>
-      <i class="bi bi-instagram"></i>
+      <i className="bi bi-instagram"></i>
       </Link>
       <Link>
-        <i class="bi bi-whatsapp"></i>
+        <i className="bi bi-whatsapp"></i>
       </Link>
     </div>
   )

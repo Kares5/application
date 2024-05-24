@@ -16,7 +16,7 @@ const CategoryProduct = () => {
 
     const getProductByCat = async () => {
         try {
-            const {data} = await axios.get(`http://localhost:5000/api/product/product-category/${params.slug}`)
+            const {data} = await axios.get(`https://mern1-rpok.onrender.com/api/product/product-category/${params.slug}`)
             setProducts(data.products)
             setcategory(data.category)
             
@@ -34,7 +34,7 @@ const CategoryProduct = () => {
             {products.map(p => (
                 <div className={styles.singelCategoryContainer}>
                     <div className={styles.imgCategory}>
-                        <img src={`http://localhost:5000/api/product/product-photo/${p._id}`} alt = {p.name}/> 
+                        <img src={`https://mern1-rpok.onrender.com/api/product/product-photo/${p._id}`} alt = {p.name}/> 
                     </div>
                     <div className={styles.bodyproductCat}>
                     <h3> {p.name}</h3>

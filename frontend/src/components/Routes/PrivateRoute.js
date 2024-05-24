@@ -9,7 +9,7 @@ export default function PrivateRoute () {
     const [auth , setAuth] = useAuth()
     useEffect(() => {
         const authCheck = async() => {
-            const res = await axios.get('http://localhost:5000/api/auth/user-auth')
+            const res = await axios.get('https://mern1-rpok.onrender.com/api/auth/user-auth')
             if(res.data.ok) {
                 setOk(true)
             }else{

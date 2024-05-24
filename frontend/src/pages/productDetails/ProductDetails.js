@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Layout from './../../components/Layout';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './productDetails.module.css'
-import { toast } from 'react-toastify';
-import { useCart } from '../../context/cart';
 
 const ProductDetails = () => {
   const params = useParams()
   const [product , setProduct] = useState({})
-  const [cart , setCart] = useCart([])
   const [ relatedProduct , setRelatedProduct] = useState([])
+  const navigate = useNavigate()
 
   useEffect( () => {
     if(params.slug)  getProduct()
@@ -19,7 +17,7 @@ const ProductDetails = () => {
   // get product
   const getProduct = async () => {
     try {
-      const {data} = await axios.get(`http://localhost:5000/api/product/get-product/${params.slug}`)
+      const {data} = await axios.get(`https://mern1-rpok.onrender.com/api/product/get-product/${params.slug}`)
       setProduct(data.product)
       getSimilarProduct(data.product._id , data.product.category._id)
     } catch (error) {
@@ -29,7 +27,7 @@ const ProductDetails = () => {
 
   const getSimilarProduct = async (pid , cid) => {
     try {
-      const {data} = await axios.get(`http://localhost:5000/api/product/related-product/${pid}/${cid}`);
+      const {data} = await axios.get(`https://mern1-rpok.onrender.com/api/product/related-product/${pid}/${cid}`);
       setRelatedProduct(data.products)
       
     } catch (error) {
@@ -41,7 +39,7 @@ const ProductDetails = () => {
     <Layout>
         <div className={styles.Singleproduct} >
           <div className={styles.imageProduct}>
-            <img src={`http://localhost:5000/api/product/product-photo/${product._id}`} alt = {product.name}/>     
+            <img src={`https://mern1-rpok.onrender.com/api/product/product-photo/${product._id}`} alt = {product.name}/>     
           </div>
           <div className={styles.productBody}>
             <h2> {product.name}</h2>
@@ -49,10 +47,8 @@ const ProductDetails = () => {
             <div>${product.price}</div>
             <h4>Category : {product.category?.name}</h4>
 
-            <div className={styles.cartIcon} onClick={() =>{
-              setCart ([...cart , product ]); localStorage.setItem('cart' ,                   
-              JSON.stringify([...cart , product ])); toast.success('Item added to cart successfully') }}>
-             Add To Cart
+            <div className={styles.cartIcon} onClick={() => navigate('/')}>
+            Go To Home
             </div>
           </div>
       </div>
@@ -63,7 +59,7 @@ const ProductDetails = () => {
               {relatedProduct.map(p => (
                 <div className={styles.SingleRelated} key={p._id}>
                   <div className={styles.Relatedimage}>
-                    <img src={`http://localhost:5000/api/product/product-photo/${p._id}`} alt = {p.name}/>     
+                    <img src={`https://mern1-rpok.onrender.com/api/product/product-photo/${p._id}`} alt = {p.name}/>     
                   </div>
 
                   <div className={styles.RelatedBody}>

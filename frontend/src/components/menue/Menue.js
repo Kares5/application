@@ -21,14 +21,14 @@ const Menue = () => {
 
   const [search, setSearch] = useState("");
 
-  const { addToCart } = useCart([]);
+  const [ cart, removeFromCart, changeQuantity, addToCart , clearCart ] = useCart();
   const [favorite, setfavorite] = useFavorite([]);
 
   // get all cats
   const getCategories = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/category/get-category"
+        "https://mern1-rpok.onrender.com/api/category/get-category"
       );
       setCategories(data.category);
     } catch (error) {
@@ -45,7 +45,7 @@ const Menue = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/api/product/product-list/${page}`
+        `https://mern1-rpok.onrender.com/api/product/product-list/${page}`
       );
       const pro=data.products.map((item)=> ({...item,id:item._id}))
       setLoading(false);
@@ -59,7 +59,7 @@ const Menue = () => {
   const getTotal = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/product/product-count"
+        "https://mern1-rpok.onrender.com/api/product/product-count"
       );
       setTotal(data.total);
     } catch (error) {
@@ -75,7 +75,7 @@ const Menue = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/api/product/product-list/${page}`
+        `https://mern1-rpok.onrender.com/api/product/product-list/${page}`
       );
       setLoading(false);
       setProducts([...products, ...data?.products]);
@@ -106,10 +106,12 @@ const Menue = () => {
 
   const filteredProducts = async () => {
     try {
+      setLoading(true)
       const { data } = await axios.post(
-        `http://localhost:5000/api/product/product-filter`,
+        `https://mern1-rpok.onrender.com/api/product/product-filter`,
         { checked }
       );
+      setLoading(false)
       setProducts(data?.products);
     } catch (error) {
       console.log(error);
@@ -155,57 +157,59 @@ const Menue = () => {
           </div>
         </div>
       </div>
-      <div className={styles.productsContainer}>
-        {products
-          .filter((p) => p.name.toLowerCase().includes(search))
-          .map((p) => (
-            <div className={styles.Singleproduct}>
-              <div className={styles.imageProduct}>
-                <img
-                  src={`http://localhost:5000/api/product/product-photo/${p._id}`}
-                  alt={p.name}
-                />
+      {loading ? '' :
+     (<div className={styles.productsContainer}>
+          {products
+            .filter((p) => p.name.toLowerCase().includes(search))
+            .map((p) => (
+              <div className={styles.Singleproduct} key={p._id}>
+                <div className={styles.imageProduct}>
+                  <img
+                    src={`https://mern1-rpok.onrender.com/api/product/product-photo/${p._id}`}
+                    alt={p.name}
+                  />
 
-                <div
-                  className={styles.heartIcon}
-                  onClick={() => {
-                    const isExist = favorite.find((x) => x._id === p._id);
-                    if (isExist) {
-                      toast.error("Item already added to cart ");
-                      return;
-                    }
-                    setfavorite([...favorite, p]);
-                    localStorage.setItem(
-                      "favorite",
-                      JSON.stringify([...favorite, p])
-                    );
-                    toast.success("Item added to favorite successfully");
-                  }}
-                >
-                  <i className="bi bi-heart-fill"></i>
+                  <div
+                    className={styles.heartIcon}
+                    onClick={() => {
+                      const isExist = favorite.find((x) => x._id === p._id);
+                      if (isExist) {
+                        toast.error("Item already added to cart ");
+                        return;
+                      }
+                      setfavorite([...favorite, p]);
+                      localStorage.setItem(
+                        "favorite",
+                        JSON.stringify([...favorite, p])
+                      );
+                      toast.success("Item added to favorite successfully");
+                    }}
+                  >
+                    <i className="bi bi-heart-fill"></i>
+                  </div>
+
+                  <div
+                    className={styles.cartIcon}
+                    onClick={() => {
+                      addToCart(p);
+                      toast.success("Item added to cart successfully");
+                    }}
+                  >
+                    <i className="bi bi-cart-fill"></i>
+                  </div>
                 </div>
-
-                <div
-                  className={styles.cartIcon}
-                  onClick={() => {
-                    addToCart(p);
-                    toast.success("Item added to cart successfully");
-                  }}
-                >
-                  <i className="bi bi-cart-fill"></i>
+                <div className={styles.productBody}>
+                  <h2>Name : {p.name}</h2>
+                  <p>Description : {p.description.substring(0, 30)}</p>
+                  <div>Price : ${p.price}</div>
+                  <button onClick={() => navigate(`/product/${p.slug}`)}>
+                    See More
+                  </button>
                 </div>
               </div>
-              <div className={styles.productBody}>
-                <h2>Name : {p.name}</h2>
-                <p>Description : {p.description.substring(0, 30)}</p>
-                <div>Price : ${p.price}</div>
-                <button onClick={() => navigate(`/product/${p.slug}`)}>
-                  See More
-                </button>
-              </div>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>)
+        }
       <div className={styles.loadMoreContainer}>
         {products && products.length < total && (
           <button
